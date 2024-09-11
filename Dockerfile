@@ -1,0 +1,22 @@
+FROM registry.access.redhat.com/ubi8/python-36
+#FROM registry.access.redhat.com/ubi9/python-311:1-72.1724040033
+
+# By default, listen on port 8081
+EXPOSE 8080/tcp
+ENV FLASK_PORT=8080
+
+# Set the working directory in the container
+WORKDIR /app-src
+
+# Copy the content of the local src directory to the working directory
+COPY . .
+
+# Add application sources with correct permissions for OpenShift
+USER 0
+RUN chmod 777 /app-src
+
+# Install the dependencies
+RUN pip install Flask
+
+# Run the application
+CMD [ "python", "app.py" ]
