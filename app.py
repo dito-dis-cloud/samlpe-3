@@ -74,6 +74,33 @@ def result_post():
 
     return render_template('index.html', data = data)
 
+@app.route('/delete', methods=["POST"])
+def result_post():
+    # テンプレートから新規登録する商品名と値段を取得
+    code = request.form["code"]
+    
+    # データベースを開く
+    con = get_db()
+
+    # コードは既に登録されているコードの最大値＋１の値で新規登録を行う
+    #cur = con.execute("select MAX(コード) AS max_code from 商品一覧")
+    #for row in cur:
+    #    new_code = row[0] + 1
+    #cur.close()
+    
+    # 削除処理
+    #sql = "INSERT INTO 商品一覧(コード, 商品名, 値段)values({},'{}',{})".format(new_code, name, price)
+    sql = "DELETE FROM 商品一覧 WHERE コード = {code}"
+    con.execute(sql)
+    con.commit()
+
+    # 一覧再読み込み
+    cur = con.execute("select * from 商品一覧 order by コード")
+    data = cur.fetchall()
+    con.close()
+
+    return render_template('index.html', data = data)
+
 #if __name__ == '__main__':
 #    app.debug = True
 #    app.run(host='localhost')
