@@ -90,7 +90,8 @@ def delete_post():
     
     # 削除処理
     #sql = "INSERT INTO 商品一覧(コード, 商品名, 値段)values({},'{}',{})".format(new_code, name, price)
-    sql = "DELETE FROM 商品一覧 WHERE コード = {code}"
+    sql = "DELETE FROM 商品一覧 WHERE コード = "
+    sql += code
     con.execute(sql)
     con.commit()
 
