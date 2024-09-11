@@ -37,15 +37,17 @@
         </label>
         <button type="submit" formmethod="POST">登録</button>
     </form>
-    <form action='/search'>         
-        <p>＜商品検索＞</p>
+    <form action='/result'>         
+        <p>＜商品削除＞</p>
         <label>
-            商品名    
+            コード    
+            <input type="number" name="code" required>
+        </label>
+        <label >
+            商品名
             <input type="text" name="name" required>
         </label>
-        <button type="submit" formmethod="POST">検索</button>
-        <!--h2>{{product}}</h2-->
-        <p>＜検索結果＞</p>
+        <button type="submit" formmethod="POST">登録</button>
     </form>
 </body>
 </html>
