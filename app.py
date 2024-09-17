@@ -73,7 +73,7 @@ def result_post():
     con.close()
 
     return render_template('index.html', data = data)
-"""
+#"""
 @app.route('/delete', methods=["POST"])
 def delete_post():
     # テンプレートから新規登録する商品名と値段を取得
@@ -101,7 +101,7 @@ def delete_post():
     con.close()
 
     return render_template('index.html', data = data)
-"""
+#"""
 #if __name__ == '__main__':
 #    app.debug = True
 #    app.run(host='localhost')
